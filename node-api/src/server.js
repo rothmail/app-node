@@ -41,7 +41,7 @@ app.post('./users', (req, res) => {
 });
 
 app.listen(3000, () =>
-    console.log('Servidor rodando em http://localhost:3000')
+    console.log('Servidor rodando em http://localhost:5500')
 ); //testando a api
 
 // app.post('/usuario/cadastrar', (request, reponse) => {
