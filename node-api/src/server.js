@@ -42,7 +42,26 @@ app.post('/users', (req, res) => {
     });
 });
 
+app.post('/users', (req, res) => {
+    const { name, email, hash_password, phone } = req.body;
+    const sql = 'INSERT INTO users (name, email, hash_password, phone) VALUES (?, ?, ?, ?)';
+
+    db.query(sql, [name, email, hash_password, phone], (err, result) => {
+        if (err) {
+            console.error('Erro ao inserir usuário', err);
+            res.status(500).json({ erro: 'Erro ao salvar usuário no banco de dados.'});
+        } else {
+            res.json({
+                id: result.insertId,
+                name: name,
+                email: email,
+                phone: phone,
+            });
+        }
+    });
+});
+
 // subir servidor
-app.listen(3000, () => {
-    console.log('Servidor rodando em http://localhost:3000');
+app.listen(5502, () => {
+    console.log('Servidor rodando em http://127.0.0.1:5502/')
 });
